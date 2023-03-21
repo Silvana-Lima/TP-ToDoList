@@ -1,5 +1,5 @@
 import { CheckIcon, DeleteIcon } from '@chakra-ui/icons'
-import { Button, FormControl, FormLabel, Heading, HStack, IconButton, Input, List, ListItem, Select, Stack, Text, VStack } from '@chakra-ui/react'
+import { Alert, AlertDescription, AlertIcon, AlertTitle, Button, FormControl, FormLabel, Heading, HStack, IconButton, Input, List, ListItem, Select, Stack, Text, VStack } from '@chakra-ui/react'
 import { useState } from 'react'
 import './App.css'
 import { getLocalStorage, setLocalStorage } from './utils/localStorage'
@@ -15,10 +15,10 @@ function App() {
     const newTasks = [...tasks, 
       {
       task: value,
+      id: uuid.v1(),
       complete: false
     }
   ] 
-
     if (validateInput(value)) {
       setTasks(newTasks);
       setLocalStorage('task', newTasks);
@@ -28,13 +28,17 @@ function App() {
   }
 
   return (
-    <VStack w="100%" minHeight='100vh' bgGradient="linear(to-t, black, purple.500)">
+    <VStack
+      w="100%"
+      minHeight="100vh"
+      bgGradient="linear(to-t, black, purple.500)"
+    >
       <Heading as="h1" fontSize="5xl" color="white" mt={10}>
         To-do List
       </Heading>
 
       <Stack direction={["column", "row"]} spacing="24px" padding="15px">
-        <VStack p='10px'>
+        <VStack p="10px">
           <FormControl>
             <FormLabel htmlFor="task">Tarea</FormLabel>
             <Input
@@ -44,21 +48,26 @@ function App() {
               bg="white"
               placeholder="Ingrese una nueva tarea"
               value={value}
-              onChange={(e)=>setValue(e.target.value)}
-
+              onChange={(e) => setValue(e.target.value)}
             />
-            <Button bg="purple.500" mt={5} type='submit' onClick={handleTasks}>
+            {/* {!validateInput(value) && (
+              <Alert status="error" mt={5}>
+                <AlertIcon />
+                <AlertTitle>Error!</AlertTitle>
+                <AlertDescription>
+                La tarea debe tener más de tres carácteres
+                </AlertDescription>
+              </Alert>
+            )} */}
+            <Button bg="purple.500" mt={5} type="submit" onClick={handleTasks}>
               Agregar tarea
             </Button>
           </FormControl>
-
         </VStack>
 
-        <VStack p='10px'>
+        <VStack p="10px">
           <FormControl mb={15}>
-            <FormLabel htmlFor="select">
-              Qué tareas desea ver?
-            </FormLabel>
+            <FormLabel htmlFor="select">Qué tareas desea ver?</FormLabel>
             <Select id="select" bg={"white"} name="select">
               <option value="todas">Todas</option>
               <option value="completas">Completas</option>
@@ -66,33 +75,32 @@ function App() {
             </Select>
           </FormControl>
           <List spacing={3}>
-            {tasks.map((task)=>(
-               <ListItem
-               key={task.task}
-               bg={"white"}      
-               display="flex"
-               justifyContent="space-between"
-             >
-               <Text>
-                 {task.task}
-               </Text>
-               <HStack>
-                 <IconButton
-                   aria-label="Complete task"
-                   colorScheme="purple"
-                   borderRadius="none"
-                   icon={<CheckIcon />}
-                 />
-                 <IconButton
-                   aria-label="Delete task"
-                   colorScheme="gray"
-                   borderRadius="none"
-                   icon={<DeleteIcon />}
-                 />
-               </HStack>
-             </ListItem>
+            {tasks.map((task) => (
+              <ListItem
+                key={task.id}
+                bg={"white"}
+                display="flex"
+                justifyContent="space-between"
+              >
+                <Text>{task.task}</Text>
+                <HStack>
+                  <IconButton
+                    aria-label="Complete task"
+                    colorScheme="purple"
+                    borderRadius="none"
+                    id={task.id}
+                    icon={<CheckIcon />}
+                  />
+                  <IconButton
+                    aria-label="Delete task"
+                    colorScheme="gray"
+                    borderRadius="none"
+                    id={task.id}
+                    icon={<DeleteIcon />}
+                  />
+                </HStack>
+              </ListItem>
             ))}
-            
           </List>
         </VStack>
       </Stack>
