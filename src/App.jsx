@@ -2,11 +2,14 @@ import { CheckIcon, DeleteIcon } from '@chakra-ui/icons'
 import { Button, FormControl, FormLabel, Heading, HStack, IconButton, Input, List, ListItem, Select, Stack, Text, VStack } from '@chakra-ui/react'
 import { useState } from 'react'
 import './App.css'
+import { getLocalStorage, setLocalStorage } from './utils/localStorage'
+import { validateInput } from './utils/validateInput'
 
 
 function App() {
+  const initialTask = getLocalStorage('task') || []
   const [value, setValue] = useState('')
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(initialTask);
 
   const handleTasks = ()=>{
     const newTasks = [...tasks, 
@@ -15,8 +18,13 @@ function App() {
       complete: false
     }
   ] 
-    setTasks(newTasks);
-    console.log(tasks);
+
+    if (validateInput(value)) {
+      setTasks(newTasks);
+      setLocalStorage('task', newTasks);
+    } else {
+      console.log("La tarea debe tener más de tres carácteres")
+    }
   }
 
   return (
@@ -28,10 +36,11 @@ function App() {
       <Stack direction={["column", "row"]} spacing="24px" padding="15px">
         <VStack p='10px'>
           <FormControl>
-            <FormLabel htmlFor="tarea">Tarea</FormLabel>
+            <FormLabel htmlFor="task">Tarea</FormLabel>
             <Input
               type="text"
-              id="tarea"
+              id="task"
+              name="task"
               bg="white"
               placeholder="Ingrese una nueva tarea"
               value={value}
@@ -50,7 +59,7 @@ function App() {
             <FormLabel htmlFor="select">
               Qué tareas desea ver?
             </FormLabel>
-            <Select id="select" bg={"white"}>
+            <Select id="select" bg={"white"} name="select">
               <option value="todas">Todas</option>
               <option value="completas">Completas</option>
               <option value="incompletas">Incompletas</option>
