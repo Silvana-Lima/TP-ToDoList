@@ -1,8 +1,9 @@
-import { CheckIcon, DeleteIcon } from '@chakra-ui/icons'
-import { FormControl, FormLabel, Heading, HStack, IconButton, List, ListItem, Select, Stack, Text, VStack } from '@chakra-ui/react'
+import { Heading, Stack, VStack } from '@chakra-ui/react'
 import { useState } from 'react'
 import './App.css'
 import { InputTask } from './modules/InputTask'
+import { ListTasks } from './modules/ListTasks'
+import { SelectTasks } from './modules/SelectTasks'
 import { getLocalStorage } from './utils/localStorage'
 
 
@@ -23,47 +24,12 @@ function App() {
       </Heading>
 
       <Stack direction={["column", "row"]} spacing="24px" padding="15px">
-
-        <InputTask tasks={tasks} setTasks={setTasks}  />
-
-
         <VStack p="10px">
-          <FormControl mb={15}>
-            <FormLabel htmlFor="selectTasks">Qué tareas desea ver?</FormLabel>
-            <Select id="selectTasks" bg={"white"} name="selectTasks">
-              <option value="todas">Todas</option>
-              <option value="completas">Completas</option>
-              <option value="incompletas">Incompletas</option>
-            </Select>
-          </FormControl>
-          <List spacing={3}>
-            {tasks.map((task) => (
-              <ListItem
-                key={task.id}
-                bg={"white"}
-                display="flex"
-                justifyContent="space-between"
-              >
-                <Text>{task.task}</Text>
-                <HStack>
-                  <IconButton
-                    aria-label="Complete task"
-                    colorScheme="purple"
-                    borderRadius="none"
-                    id={task.id}
-                    icon={<CheckIcon />}
-                  />
-                  <IconButton
-                    aria-label="Delete task"
-                    colorScheme="gray"
-                    borderRadius="none"
-                    id={task.id}
-                    icon={<DeleteIcon />}
-                  />
-                </HStack>
-              </ListItem>
-            ))}
-          </List>
+          <InputTask tasks={tasks} setTasks={setTasks} />
+        </VStack>
+        <VStack p="10px">
+          <SelectTasks />
+          <ListTasks tasks={tasks} />
         </VStack>
       </Stack>
     </VStack>

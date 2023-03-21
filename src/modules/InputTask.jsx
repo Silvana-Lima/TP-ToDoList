@@ -1,4 +1,4 @@
-import { Button, FormControl, FormLabel, Input, VStack } from "@chakra-ui/react";
+import { Button, FormControl, FormLabel, Input} from "@chakra-ui/react";
 import { useState } from "react";
 import { setLocalStorage } from "../utils/localStorage";
 import { validateInput } from "../utils/validateInput";
@@ -24,7 +24,6 @@ export const InputTask = ({tasks, setTasks} ) => {
       }
 
 return (
-<VStack p="10px">
           <FormControl>
             <FormLabel htmlFor="inputTask">Tarea</FormLabel>
             <Input
@@ -49,7 +48,6 @@ return (
               Agregar tarea
             </Button>
           </FormControl>
-        </VStack>
 
 )
 }
