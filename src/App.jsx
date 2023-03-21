@@ -1,31 +1,16 @@
 import { CheckIcon, DeleteIcon } from '@chakra-ui/icons'
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Button, FormControl, FormLabel, Heading, HStack, IconButton, Input, List, ListItem, Select, Stack, Text, VStack } from '@chakra-ui/react'
+import { FormControl, FormLabel, Heading, HStack, IconButton, List, ListItem, Select, Stack, Text, VStack } from '@chakra-ui/react'
 import { useState } from 'react'
 import './App.css'
-import { getLocalStorage, setLocalStorage } from './utils/localStorage'
-import { validateInput } from './utils/validateInput'
+import { InputTask } from './modules/InputTask'
+import { getLocalStorage } from './utils/localStorage'
 
 
 function App() {
+
   const initialTask = getLocalStorage('task') || []
-  const [value, setValue] = useState('')
   const [tasks, setTasks] = useState(initialTask);
 
-  const handleTasks = ()=>{
-    const newTasks = [...tasks, 
-      {
-      task: value,
-      id: uuid.v1(),
-      complete: false
-    }
-  ] 
-    if (validateInput(value)) {
-      setTasks(newTasks);
-      setLocalStorage('task', newTasks);
-    } else {
-      console.log("La tarea debe tener más de tres carácteres")
-    }
-  }
 
   return (
     <VStack
@@ -38,37 +23,14 @@ function App() {
       </Heading>
 
       <Stack direction={["column", "row"]} spacing="24px" padding="15px">
-        <VStack p="10px">
-          <FormControl>
-            <FormLabel htmlFor="task">Tarea</FormLabel>
-            <Input
-              type="text"
-              id="task"
-              name="task"
-              bg="white"
-              placeholder="Ingrese una nueva tarea"
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-            />
-            {/* {!validateInput(value) && (
-              <Alert status="error" mt={5}>
-                <AlertIcon />
-                <AlertTitle>Error!</AlertTitle>
-                <AlertDescription>
-                La tarea debe tener más de tres carácteres
-                </AlertDescription>
-              </Alert>
-            )} */}
-            <Button bg="purple.500" mt={5} type="submit" onClick={handleTasks}>
-              Agregar tarea
-            </Button>
-          </FormControl>
-        </VStack>
+
+        <InputTask tasks={tasks} setTasks={setTasks}  />
+
 
         <VStack p="10px">
           <FormControl mb={15}>
-            <FormLabel htmlFor="select">Qué tareas desea ver?</FormLabel>
-            <Select id="select" bg={"white"} name="select">
+            <FormLabel htmlFor="selectTasks">Qué tareas desea ver?</FormLabel>
+            <Select id="selectTasks" bg={"white"} name="selectTasks">
               <option value="todas">Todas</option>
               <option value="completas">Completas</option>
               <option value="incompletas">Incompletas</option>
