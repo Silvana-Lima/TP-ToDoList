@@ -1,4 +1,4 @@
-import { Button, FormControl, FormLabel, Input} from "@chakra-ui/react";
+import { Alert, AlertDescription, AlertIcon, AlertTitle, Button, FormControl, FormLabel, Input} from "@chakra-ui/react";
 import { useState } from "react";
 import { setLocalStorage } from "../utils/localStorage";
 import { validateInput } from "../utils/validateInput";
@@ -6,6 +6,7 @@ import { validateInput } from "../utils/validateInput";
 export const InputTask = ({tasks, setTasks} ) => {
 
     const [value, setValue] = useState('')
+    const [error, setError] = useState(false)
 
     const handleTasks = ()=>{
         const newTasks = [...tasks, 
@@ -18,8 +19,9 @@ export const InputTask = ({tasks, setTasks} ) => {
         if (validateInput(value)) {
           setTasks(newTasks);
           setLocalStorage('task', newTasks);
+          setError(false)
         } else {
-          console.log("La tarea debe tener más de tres carácteres")
+          setError(true)
         }
       }
 
@@ -35,15 +37,15 @@ return (
               value={value}
               onChange={(e) => setValue(e.target.value)}
             />
-            {/* {!validateInput(value) && (
+            {error && (
               <Alert status="error" mt={5}>
                 <AlertIcon />
                 <AlertTitle>Error!</AlertTitle>
                 <AlertDescription>
-                La tarea debe tener más de tres carácteres
+                   Debe ingresar una tarea.
                 </AlertDescription>
               </Alert>
-            )} */}
+            )}
             <Button bg="purple.500" mt={5} type="submit" onClick={handleTasks}>
               Agregar tarea
             </Button>

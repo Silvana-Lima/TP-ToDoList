@@ -29,7 +29,7 @@ function App() {
         </VStack>
         <VStack p="10px">
           <SelectTasks />
-          <ListTasks tasks={tasks} />
+          <ListTasks tasks={tasks} setTasks={setTasks}/>
         </VStack>
       </Stack>
     </VStack>
