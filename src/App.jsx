@@ -11,6 +11,7 @@ function App() {
 
   const initialTask = getLocalStorage('task') || []
   const [tasks, setTasks] = useState(initialTask);
+  const [filterTasks, setfilterTasks] = useState([...tasks])
 
 
   return (
@@ -25,11 +26,11 @@ function App() {
 
       <Stack direction={["column", "row"]} spacing="24px" padding="15px">
         <VStack p="10px">
-          <InputTask tasks={tasks} setTasks={setTasks} />
+          <InputTask tasks={tasks} setTasks={setTasks} setfilterTasks={setfilterTasks} />
         </VStack>
         <VStack p="10px">
-          <SelectTasks />
-          <ListTasks tasks={tasks} setTasks={setTasks}/>
+          <SelectTasks tasks={tasks} filterTasks={filterTasks} setfilterTasks={setfilterTasks} />
+          <ListTasks tasks={tasks} setTasks={setTasks} filterTasks={filterTasks} setfilterTasks={setfilterTasks}/>
         </VStack>
       </Stack>
     </VStack>

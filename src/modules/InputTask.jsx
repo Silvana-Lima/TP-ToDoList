@@ -3,7 +3,7 @@ import { useState } from "react";
 import { setLocalStorage } from "../utils/localStorage";
 import { validateInput } from "../utils/validateInput";
 
-export const InputTask = ({tasks, setTasks} ) => {
+export const InputTask = ({tasks, setTasks, setfilterTasks} ) => {
 
     const [value, setValue] = useState('')
     const [error, setError] = useState(false)
@@ -18,6 +18,7 @@ export const InputTask = ({tasks, setTasks} ) => {
       ] 
         if (validateInput(value)) {
           setTasks(newTasks);
+          setfilterTasks(newTasks)
           setLocalStorage('task', newTasks);
           setError(false)
         } else {

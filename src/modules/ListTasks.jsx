@@ -3,11 +3,9 @@ import { HStack, IconButton, List, ListItem, Text } from "@chakra-ui/react"
 import { useState } from "react"
 import { setLocalStorage } from "../utils/localStorage"
 
-export const ListTasks = ({tasks, setTasks} ) =>{
+export const ListTasks = ({tasks, setTasks, filterTasks, setfilterTasks} ) =>{
     
-
      const [completeTask, setCompleteTask] = useState(false);
-    //  const [deleteTask, setDeleteTaks] = useState(false);
 
      const handleCompleteTask = (id) => {
        setCompleteTask(!completeTask);
@@ -23,12 +21,13 @@ export const ListTasks = ({tasks, setTasks} ) =>{
 
      const handleDeleteTask = (id) => {
        setTasks((prev) => prev.filter((task) => task.id !== id));
+       setfilterTasks(tasks);
        setLocalStorage("task", tasks);
      };
 
     return (
         <List spacing={3}>
-        {tasks.map((task) => (
+        {filterTasks.map((task) => (
           <ListItem
             key={task.id}
             bg={"white"}
