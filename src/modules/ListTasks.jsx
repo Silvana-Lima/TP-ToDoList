@@ -2,6 +2,7 @@ import { CheckIcon, DeleteIcon } from "@chakra-ui/icons"
 import { HStack, IconButton, List, ListItem, Text } from "@chakra-ui/react"
 import { useState } from "react"
 import { setLocalStorage } from "../utils/localStorage"
+import { ModalDelete } from "./ModalDelete"
 
 export const ListTasks = ({tasks, setTasks, filterTasks, setfilterTasks} ) =>{
     
@@ -33,8 +34,12 @@ export const ListTasks = ({tasks, setTasks, filterTasks, setfilterTasks} ) =>{
             bg={"white"}
             display="flex"
             justifyContent="space-between"
+            alignItems={"center"}
+            borderRadius={"md"}
+            w={[300, 400]}
+            pl={1}
           >
-            <Text textDecoration={task.complete ? 'line-through': null}>{task.task}</Text>
+            <Text textDecoration={task.complete ? 'line-through': null} fontWeight={"semibold"} >{task.task}</Text>
             <HStack>
               <IconButton
                 aria-label="Complete task"
@@ -45,16 +50,9 @@ export const ListTasks = ({tasks, setTasks, filterTasks, setfilterTasks} ) =>{
                 icon={<CheckIcon />}
                 value={completeTask}
                 onClick={()=> handleCompleteTask(task.id) }
+                m={"-2"}
               />
-              <IconButton
-                aria-label="Delete task"
-                colorScheme="gray"
-                borderRadius="none"
-                id={task.id}
-                value={task.id}
-                icon={<DeleteIcon />}
-                onClick={()=> handleDeleteTask(task.id) }
-              />
+              <ModalDelete id={task.id} handleDeleteTask={handleDeleteTask} />
             </HStack>
           </ListItem>
         ))}

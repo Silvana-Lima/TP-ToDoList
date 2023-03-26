@@ -21,25 +21,27 @@ export const InputTask = ({tasks, setTasks, setfilterTasks} ) => {
           setfilterTasks(newTasks)
           setLocalStorage('task', newTasks);
           setError(false)
+          setValue('')
         } else {
           setError(true)
         }
       }
 
 return (
-          <FormControl>
+          <FormControl display={"flex"} flexDirection={"column"} >
             <FormLabel htmlFor="inputTask">Tarea</FormLabel>
             <Input
               type="text"
               id="inputTask"
               name="inputTask"
               bg="white"
+              w={[300, 400]}
               placeholder="Ingrese una nueva tarea"
               value={value}
               onChange={(e) => setValue(e.target.value)}
             />
             {error && (
-              <Alert status="error" mt={5}>
+              <Alert status="error" mt={5} borderRadius={"md"}>
                 <AlertIcon />
                 <AlertTitle>Error!</AlertTitle>
                 <AlertDescription>

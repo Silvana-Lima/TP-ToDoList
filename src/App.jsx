@@ -24,7 +24,7 @@ function App() {
         To-do List
       </Heading>
 
-      <Stack direction={["column", "row"]} spacing="24px" padding="15px">
+      <Stack direction={["column", "column", "column", "row"]} spacing="24px" padding="15px">
         <VStack p="10px">
           <InputTask tasks={tasks} setTasks={setTasks} setfilterTasks={setfilterTasks} />
         </VStack>
