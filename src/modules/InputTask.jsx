@@ -1,12 +1,15 @@
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Button, FormControl, FormLabel, Input} from "@chakra-ui/react";
+import { CheckCircleIcon } from "@chakra-ui/icons";
+import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, FormControl, FormLabel, Input, useToast} from "@chakra-ui/react";
 import { useState } from "react";
 import { setLocalStorage } from "../utils/localStorage";
 import { validateInput } from "../utils/validateInput";
+// import { ToastCreateTask } from "./ToastCreateTask";
 
 export const InputTask = ({tasks, setTasks, setfilterTasks} ) => {
 
     const [value, setValue] = useState('')
     const [error, setError] = useState(false)
+    const toast = useToast()
 
     const handleTasks = ()=>{
         const newTasks = [...tasks, 
@@ -19,6 +22,16 @@ export const InputTask = ({tasks, setTasks, setfilterTasks} ) => {
         if (validateInput(value)) {
           setTasks(newTasks);
           setfilterTasks(newTasks)
+          toast({
+            render: () => (
+                <Box color='white' p={3} bg='purple.500' borderRadius={"md"}>
+                  <CheckCircleIcon mr={2}/>
+                   "Se ha agregado una nueva tarea."
+                </Box>
+              ),
+            duration: 3000,
+            isClosable: true,
+          })
           setLocalStorage('task', newTasks);
           setError(false)
           setValue('')

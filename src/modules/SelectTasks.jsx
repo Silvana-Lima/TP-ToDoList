@@ -3,7 +3,7 @@ import { useState } from "react"
 
 
 
-export const SelectTasks = ({tasks, filterTasks, setfilterTasks}) => {
+export const SelectTasks = ({tasks, setfilterTasks}) => {
    const [selectValue, setSelectValue] = useState("todas");
 
    const handleSelectValue = (e) => {
@@ -11,7 +11,7 @@ export const SelectTasks = ({tasks, filterTasks, setfilterTasks}) => {
 
      setfilterTasks(
        tasks.filter((task) => {
-         console.log(filterTasks);
+         
          if (e.target.value === "todas") {
            return task;
          }

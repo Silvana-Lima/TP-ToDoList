@@ -21,10 +21,7 @@ import React from 'react'
         <IconButton
                 aria-label="Delete task"
                 colorScheme="gray"
-                // borderRadius="none"
                 borderRightRadius={"md"}
-                // id={task.id}
-                // value={task.id}
                 icon={<DeleteIcon />}
                 onClick={onOpen}
               />

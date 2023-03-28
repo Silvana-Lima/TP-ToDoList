@@ -29,7 +29,7 @@ function App() {
           <InputTask tasks={tasks} setTasks={setTasks} setfilterTasks={setfilterTasks} />
         </VStack>
         <VStack p="10px">
-          <SelectTasks tasks={tasks} filterTasks={filterTasks} setfilterTasks={setfilterTasks} />
+          <SelectTasks tasks={tasks} setfilterTasks={setfilterTasks} />
           <ListTasks tasks={tasks} setTasks={setTasks} filterTasks={filterTasks} setfilterTasks={setfilterTasks}/>
         </VStack>
       </Stack>

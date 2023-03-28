@@ -1,29 +1,28 @@
-import { CheckIcon, DeleteIcon } from "@chakra-ui/icons"
+import { CheckIcon } from "@chakra-ui/icons"
 import { HStack, IconButton, List, ListItem, Text } from "@chakra-ui/react"
-import { useState } from "react"
 import { setLocalStorage } from "../utils/localStorage"
 import { ModalDelete } from "./ModalDelete"
 
 export const ListTasks = ({tasks, setTasks, filterTasks, setfilterTasks} ) =>{
-    
-     const [completeTask, setCompleteTask] = useState(false);
 
      const handleCompleteTask = (id) => {
-       setCompleteTask(!completeTask);
 
-       tasks.map((task) => {
+       setTasks(tasks.map((task) => {
          if (task.id === id) {
-           task.complete = completeTask;
+           task.complete = !task.complete;
          }
-       });
+         return task;
+       }));
 
        setLocalStorage("task", tasks);
      };
 
      const handleDeleteTask = (id) => {
-       setTasks((prev) => prev.filter((task) => task.id !== id));
-       setfilterTasks(tasks);
-       setLocalStorage("task", tasks);
+      const newTask = tasks.filter((task) => task.id !== id)
+       setTasks(newTask);
+       console.log(newTask)
+       setfilterTasks(newTask);
+       setLocalStorage("task", newTask);
      };
 
     return (
@@ -39,7 +38,7 @@ export const ListTasks = ({tasks, setTasks, filterTasks, setfilterTasks} ) =>{
             w={[300, 400]}
             pl={1}
           >
-            <Text textDecoration={task.complete ? 'line-through': null} fontWeight={"semibold"} >{task.task}</Text>
+            <Text as={task.complete && 's'} fontWeight={"semibold"} >{task.task}</Text>
             <HStack>
               <IconButton
                 aria-label="Complete task"
@@ -48,7 +47,6 @@ export const ListTasks = ({tasks, setTasks, filterTasks, setfilterTasks} ) =>{
                 variant={task.complete ? 'outline' : 'solid'}
                 id={task.id}
                 icon={<CheckIcon />}
-                value={completeTask}
                 onClick={()=> handleCompleteTask(task.id) }
                 m={"-2"}
               />
