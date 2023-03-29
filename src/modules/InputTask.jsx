@@ -3,7 +3,6 @@ import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, FormContro
 import { useState } from "react";
 import { setLocalStorage } from "../utils/localStorage";
 import { validateInput } from "../utils/validateInput";
-// import { ToastCreateTask } from "./ToastCreateTask";
 
 export const InputTask = ({tasks, setTasks, setfilterTasks} ) => {
 
@@ -42,7 +41,7 @@ export const InputTask = ({tasks, setTasks, setfilterTasks} ) => {
 
 return (
           <FormControl display={"flex"} flexDirection={"column"} >
-            <FormLabel htmlFor="inputTask">Tarea</FormLabel>
+            <FormLabel htmlFor="inputTask" fontSize='lg'>Tarea</FormLabel>
             <Input
               type="text"
               id="inputTask"
@@ -63,7 +62,7 @@ return (
               </Alert>
             )}
             <Button bg="purple.500" mt={5} type="submit" onClick={handleTasks}>
-              Agregar tarea
+              Agregar
             </Button>
           </FormControl>
 

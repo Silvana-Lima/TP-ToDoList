@@ -12,7 +12,7 @@ import {
   } from '@chakra-ui/react'
 import React from 'react'
 
-  export function ModalDelete({id, handleDeleteTask} ) {
+  export function ModalDelete({id, deleteTask} ) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
   
@@ -21,7 +21,7 @@ import React from 'react'
         <IconButton
                 aria-label="Delete task"
                 colorScheme="gray"
-                borderRightRadius={"md"}
+                borderRadius={"md"}
                 icon={<DeleteIcon />}
                 onClick={onOpen}
               />
@@ -45,7 +45,7 @@ import React from 'react'
                 <Button ref={cancelRef} onClick={onClose}>
                   Cancelar
                 </Button>
-                <Button colorScheme='red' ml={3} id={id} value={id}  onClick={()=> handleDeleteTask(id) }>
+                <Button colorScheme='red' ml={3} id={id} value={id}  onClick={()=> deleteTask(id) }>
                   Eliminar
                 </Button>
               </AlertDialogFooter>

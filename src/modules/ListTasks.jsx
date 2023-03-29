@@ -5,7 +5,7 @@ import { ModalDelete } from "./ModalDelete"
 
 export const ListTasks = ({tasks, setTasks, filterTasks, setfilterTasks} ) =>{
 
-     const handleCompleteTask = (id) => {
+     const completeTask = (id) => {
 
        setTasks(tasks.map((task) => {
          if (task.id === id) {
@@ -17,12 +17,11 @@ export const ListTasks = ({tasks, setTasks, filterTasks, setfilterTasks} ) =>{
        setLocalStorage("task", tasks);
      };
 
-     const handleDeleteTask = (id) => {
-      const newTask = tasks.filter((task) => task.id !== id)
-       setTasks(newTask);
-       console.log(newTask)
-       setfilterTasks(newTask);
-       setLocalStorage("task", newTask);
+     const deleteTask = (id) => {
+      const newTasks = tasks.filter((task) => task.id !== id)
+       setTasks(newTasks);
+       setfilterTasks(newTasks);
+       setLocalStorage("task", newTasks);
      };
 
     return (
@@ -36,21 +35,20 @@ export const ListTasks = ({tasks, setTasks, filterTasks, setfilterTasks} ) =>{
             alignItems={"center"}
             borderRadius={"md"}
             w={[300, 400]}
-            pl={1}
+            p={1}
           >
-            <Text as={task.complete && 's'} fontWeight={"semibold"} >{task.task}</Text>
+            <Text as={task.complete && 's'} fontWeight={"semibold"} overflow={"hidden"} >{task.task}</Text>
             <HStack>
               <IconButton
                 aria-label="Complete task"
                 colorScheme="purple"
-                borderRadius="none"
+                borderRadius={"md"}
                 variant={task.complete ? 'outline' : 'solid'}
                 id={task.id}
                 icon={<CheckIcon />}
-                onClick={()=> handleCompleteTask(task.id) }
-                m={"-2"}
+                onClick={()=> completeTask(task.id) }
               />
-              <ModalDelete id={task.id} handleDeleteTask={handleDeleteTask} />
+              <ModalDelete id={task.id} deleteTask={deleteTask} />
             </HStack>
           </ListItem>
         ))}
