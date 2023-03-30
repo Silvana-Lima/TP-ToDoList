@@ -34,9 +34,10 @@ function App() {
         </VStack>
         <VStack p="20px" bg={"purple.400"} borderRadius={"md"}>
           <SelectTasks tasks={tasks} setfilterTasks={setfilterTasks} />
-          { !tasks.length && <Box w={[300, 400]} p={10}>
-           <Text fontWeight={"semibold"} fontSize={"xl"} textAlign={"center"} color={"white"}> "Aún no ha ingresado ninguna tarea" </Text>
-          </Box>}
+          {!tasks.length && 
+            <Box w={[300, 400]} p={10}>
+               <Text fontWeight={"semibold"} fontSize={"xl"} textAlign={"center"} color={"white"}> "Aún no ha ingresado ninguna tarea" </Text>
+            </Box>}
           <ListTasks tasks={tasks} setTasks={setTasks} filterTasks={filterTasks} setfilterTasks={setfilterTasks}/>
         </VStack>
       </Stack>

@@ -2,6 +2,7 @@ import { CheckIcon } from "@chakra-ui/icons"
 import { HStack, IconButton, List, ListItem, Text } from "@chakra-ui/react"
 import { setLocalStorage } from "../utils/localStorage"
 import { ModalDelete } from "./ModalDelete"
+import { ModalEdit } from "./ModalEdit"
 
 export const ListTasks = ({tasks, setTasks, filterTasks, setfilterTasks} ) =>{
 
@@ -48,6 +49,7 @@ export const ListTasks = ({tasks, setTasks, filterTasks, setfilterTasks} ) =>{
                 icon={<CheckIcon />}
                 onClick={()=> completeTask(task.id) }
               />
+              <ModalEdit id={task.id} setTasks={setTasks} tasks={tasks} />
               <ModalDelete id={task.id} deleteTask={deleteTask} />
             </HStack>
           </ListItem>
