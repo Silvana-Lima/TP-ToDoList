@@ -29,7 +29,7 @@ function App() {
         <VStack p="20px" bg={"purple.400"} borderRadius={"md"}>
           <InputTask tasks={tasks} setTasks={setTasks} setfilterTasks={setfilterTasks} />
           <Box w={[300, 400]} p={10} >
-            <Image src={imgAgenda} alt="image to do list"/>
+            <Image src={imgAgenda} alt="Image to do list"/>
           </Box>
         </VStack>
         <VStack p="20px" bg={"purple.400"} borderRadius={"md"}>
