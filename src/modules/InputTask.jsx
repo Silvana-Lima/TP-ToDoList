@@ -10,7 +10,9 @@ export const InputTask = ({tasks, setTasks, setfilterTasks} ) => {
     const [error, setError] = useState(false)
     const toast = useToast()
 
-    const handleTasks = ()=>{
+    const handleTasks = (e)=>{
+        e.preventDefault();
+
         const newTasks = [...tasks, 
           {
           task: value,
@@ -40,7 +42,7 @@ export const InputTask = ({tasks, setTasks, setfilterTasks} ) => {
       }
 
 return (
-          <FormControl display={"flex"} flexDirection={"column"} >
+          <FormControl display={"flex"} flexDirection={"column"} as="form" onSubmit={handleTasks}>
             <FormLabel htmlFor="inputTask" fontSize='lg'>Tarea</FormLabel>
             <Input
               type="text"
@@ -61,7 +63,7 @@ return (
                 </AlertDescription>
               </Alert>
             )}
-            <Button bg="purple.500" mt={5} type="submit" onClick={handleTasks}>
+            <Button bg="purple.500" mt={5} type="submit">
               Agregar
             </Button>
           </FormControl>
