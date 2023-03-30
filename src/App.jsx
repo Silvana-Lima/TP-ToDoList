@@ -5,7 +5,7 @@ import { InputTask } from './modules/InputTask'
 import { ListTasks } from './modules/ListTasks'
 import { SelectTasks } from './modules/SelectTasks'
 import { getLocalStorage } from './utils/localStorage'
-
+import imgAgenda from './assets/imgAgenda.svg' 
 
 function App() {
 
@@ -29,7 +29,7 @@ function App() {
         <VStack p="20px" bg={"purple.400"} borderRadius={"md"}>
           <InputTask tasks={tasks} setTasks={setTasks} setfilterTasks={setfilterTasks} />
           <Box w={[300, 400]} p={10} >
-            <Image src='../public/imgAgenda.svg' alt="image to do list"/>
+            <Image src={imgAgenda} alt="image to do list"/>
           </Box>
         </VStack>
         <VStack p="20px" bg={"purple.400"} borderRadius={"md"}>
