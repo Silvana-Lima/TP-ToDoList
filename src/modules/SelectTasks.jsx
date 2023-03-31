@@ -25,7 +25,7 @@ export const SelectTasks = ({tasks, setfilterTasks}) => {
         
           <FormControl mb={15}>
             <FormLabel htmlFor="selectTasks" fontSize='lg'>Qué tareas desea ver?</FormLabel>
-            <Select id="selectTasks" bg={"white"} name="selectTasks" value={selectValue} onChange={(e)=>handleSelectValue(e)}  w={[300, 400]}>
+            <Select id="selectTasks" bg={"white"} name="selectTasks" tabIndex={5} value={selectValue} onChange={(e)=>handleSelectValue(e)}  w={[300, 400]}>
               <option value="all">Todas</option>
               <option value="complete">Completas</option>
               <option value="incomplete">Incompletas</option>

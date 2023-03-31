@@ -52,10 +52,11 @@ return (
               w={[300, 400]}
               placeholder="Ingrese una nueva tarea"
               value={value}
+              tabIndex={2}
               onChange={(e) => setValue(e.target.value)}
             />
             {error && (
-              <Alert status="error" mt={5} borderRadius={"md"}>
+              <Alert status="error" mt={5} borderRadius={"md"}  tabIndex={4}>
                 <AlertIcon />
                 <AlertTitle>Error!</AlertTitle>
                 <AlertDescription>
@@ -63,7 +64,7 @@ return (
                 </AlertDescription>
               </Alert>
             )}
-            <Button bg="purple.500" mt={5} type="submit">
+            <Button bg="purple.500" mt={5} tabIndex={3} type="submit">
               Agregar
             </Button>
           </FormControl>

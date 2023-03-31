@@ -24,7 +24,7 @@ export function ModalEdit({id, setTasks, tasks}) {
     return (
       <>
         <IconButton
-        aria-label="Delete task"
+        aria-label="Editar tarea"
         colorScheme="gray"
         borderRadius={"md"}
         icon={<EditIcon />}

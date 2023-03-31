@@ -18,13 +18,6 @@ export const ListTasks = ({tasks, setTasks, filterTasks, setfilterTasks} ) =>{
        setLocalStorage("task", tasks);
      };
 
-     const deleteTask = (id) => {
-      const newTasks = tasks.filter((task) => task.id !== id)
-       setTasks(newTasks);
-       setfilterTasks(newTasks);
-       setLocalStorage("task", newTasks);
-     };
-
     return (
         <List spacing={3}>
         {filterTasks.map((task) => (
@@ -37,11 +30,13 @@ export const ListTasks = ({tasks, setTasks, filterTasks, setfilterTasks} ) =>{
             borderRadius={"md"}
             w={[300, 400]}
             p={1}
+            tabIndex={6}
+            aria-label={task.taks}
           >
             <Text as={task.complete && 's'} fontWeight={"semibold"} overflow={"hidden"} >{task.task}</Text>
             <HStack>
               <IconButton
-                aria-label="Complete task"
+                aria-label="Marcar tarea completa"
                 colorScheme="purple"
                 borderRadius={"md"}
                 variant={task.complete ? 'outline' : 'solid'}
@@ -50,7 +45,7 @@ export const ListTasks = ({tasks, setTasks, filterTasks, setfilterTasks} ) =>{
                 onClick={()=> completeTask(task.id) }
               />
               <ModalEdit id={task.id} setTasks={setTasks} tasks={tasks} />
-              <ModalDelete id={task.id} deleteTask={deleteTask} />
+              <ModalDelete id={task.id} setTasks={setTasks} tasks={tasks} setfilterTasks={setfilterTasks} />
             </HStack>
           </ListItem>
         ))}

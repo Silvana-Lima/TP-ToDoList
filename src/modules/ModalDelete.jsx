@@ -11,15 +11,23 @@ import {
     IconButton,
   } from '@chakra-ui/react'
 import React from 'react'
+import { setLocalStorage } from '../utils/localStorage'
 
-  export function ModalDelete({id, deleteTask} ) {
+  export function ModalDelete({id, setTasks, tasks, setfilterTasks} ) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
+
+    const deleteTask = (id) => {
+      const newTasks = tasks.filter((task) => task.id !== id)
+       setTasks(newTasks);
+       setfilterTasks(newTasks);
+       setLocalStorage("task", newTasks);
+     };
   
     return (
       <>
         <IconButton
-                aria-label="Delete task"
+                aria-label="Eliminar tarea"
                 colorScheme="gray"
                 borderRadius={"md"}
                 icon={<DeleteIcon />}
