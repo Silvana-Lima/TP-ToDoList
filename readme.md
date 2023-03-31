@@ -1,7 +1,7 @@
 ## To Do List
 
 Esta app te permite crear una lista de tareas, que te ayudará a tener más organizada tu vida cotidana, laboral o académica, de esta manera podrás ser más productivo y no te olvidarás de tareas pendientes. 
-Podrás crearlas, editarlas, marcar las que completaste o eliminarlas muy facilmente. 
+Podrás crearlas, editarlas, marcar las que completaste o eliminarlas muy facilmente. También tendrás la opción de elegir que tipo de tareas deseas visualizar: completas, incompletas o todas.
 
 ## Herramientas utilizadas
 
@@ -26,7 +26,7 @@ Es totalmente responsive y cuenta con propiedades de accesibilidad.
 
 1. Añade una tarea: Escribe la tarea en el campo de texto y presiona el botón "Agregar" o presiona la tecla "Enter" en el teclado.
 
-2. Marca una tarea como completada: Haz click en el botón de "Completar" (contiene ícono check) junto a la tarea que deseas marcar como completada. Si quieres desmarcarla, tilda nuevamente y volverá a su estado inicial, "incompleta".
+2. Marca una tarea como completada: Haz click en el botón de "Completar" (contiene ícono check) junto a la tarea que deseas marcar como completada. Si quieres desmarcarla, haz click nuevamente y volverá a su estado inicial, "incompleta".
 
 3. Edita una tarea: Haz click en el botón de "Editar" (contiene ícono editar) junto a la tarea que deseas cambiar. Modifica la tarea en el campo de texto y presiona el botón "Editar".
 
@@ -39,7 +39,7 @@ Es totalmente responsive y cuenta con propiedades de accesibilidad.
 
 ## Link
 
-- [Si quieres pobrar la app sin necesidad de instalarla, puedes hacerlo siguiendo este link:](https://tp-to-do-list.vercel.app/)
+- [Si quieres pobrar la app sin necesidad de instalarla, puedes hacerlo siguiendo este link.](https://tp-to-do-list.vercel.app/)
 
 
 
