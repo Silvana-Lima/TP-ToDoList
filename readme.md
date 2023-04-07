@@ -5,7 +5,7 @@ Podrás crearlas, editarlas, marcar las que completaste o eliminarlas muy facilm
 
 ## Herramientas utilizadas
 
-Creada con `Vite` utilizando `React` y la bibliteca `Chakra UI` para su estilado.
+Creada con `Vite` utilizando `React` y la bibliteca `Chakra UI`.
 Es totalmente responsive y cuenta con propiedades de accesibilidad.
 
 ## Instalación

@@ -5,7 +5,6 @@ import { SelectTasks } from './modules/SelectTasks'
 import { getLocalStorage } from './utils/localStorage'
 import imgAgenda from './assets/imgAgenda.svg' 
 import { useState } from 'react'
-import './App.css'
 
 function App() {
 
